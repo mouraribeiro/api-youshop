@@ -13,7 +13,16 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+
+
+    def list(self, request, *args, **kwargs):
+        return super(UserViewSet, self).list(request, *args, **kwargs)
+
+    def create(self, request, *args, **kwargs):
+        return super(UserViewSet, self).create(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        return super(UserViewSet, self).destroy(request, *args, **kwargs)
 
 
 # group aqui poderia ser o model account
@@ -26,15 +35,16 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+
+
 class AccountViewSet(ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
-    # permission_classes = [permissions.IsAuthenticated]
-    # authentication_classes = [authentication.SessionAuthentication]
     def list(self, request, *args, **kwargs):
         return super(AccountViewSet, self).list(request, *args, **kwargs)
 
@@ -51,9 +61,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     """
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
-
-    # permission_classes = [permissions.IsAuthenticated]
-    # authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
         return super(UserProfileViewSet, self).list(request, *args, **kwargs)
@@ -68,9 +76,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 class TreeViewSet(viewsets.ModelViewSet):
     queryset = Tree.objects.all()
     serializer_class = TreeSerializer
-
-    # permission_classes = [permissions.IsAuthenticated]
-    # authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
         return super(TreeViewSet, self).list(request, *args, **kwargs)
@@ -85,10 +91,7 @@ class TreeViewSet(viewsets.ModelViewSet):
 class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
-
-    # permission_classes = [permissions.IsAuthenticated]
-
-    # authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     def list(self, request, *args, **kwargs):
         return super(LocationViewSet, self).list(request, *args, **kwargs)
 
@@ -102,9 +105,7 @@ class LocationViewSet(viewsets.ModelViewSet):
 class PlantViewSet(viewsets.ModelViewSet):
     queryset = Plant.objects.all()
     serializer_class = PlantSerializer
-
-    # permission_classes = [permissions.IsAuthenticated]
-    # authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
         return super(PlantViewSet, self).list(request, *args, **kwargs)
